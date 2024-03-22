@@ -20,13 +20,25 @@ $('.saveBtn').on('click', function(){
 
 
 $('.time-block').each(function(){
-  {dayjs().hour()
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
     // attribute of each time-block be used to conditionally add or remove the
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
-  
+   // Get the current hour in 24-hour time using Day.js
+   const currentHour = dayjs().hour();
+
+   // Extract the hour from the time block's ID
+   const blockHour = parseInt($(this).attr('id').split('-')[1]);
+
+   // Compare the block hour with the current hour to determine past, present, or future
+   if (blockHour < currentHour) {
+       $(this).addClass('past');
+   } else if (blockHour === currentHour) {
+       $(this).addClass('present');
+   } else {
+       $(this).addClass('future');
+   }
   })
   
   // TODO: Add code to get any user input that was saved in localStorage and set
